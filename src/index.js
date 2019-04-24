@@ -25,8 +25,11 @@ class Board extends React.Component {
   }
 
   handlClick(i){
+    {/* We use slice() to create an array that's a copy of the first */}
     const squares = this.state.squares.slice();
+    {/* Then we set the value to X for that position in the copy */}
     squares[i] = 'X';
+    {/* Finally we take the copy and overwrite the original squares array */}
     this.setState({squares: squares});
   }
 
