@@ -26,7 +26,10 @@ class Board extends React.Component {
     {/* Then we set the value to X for that position in the copy */}
     squares[i] = 'X';
     {/* Finally we take the copy and overwrite the original squares array */}
-    this.setState({squares: squares});
+    this.setState({
+      squares: squares,
+      xIsNext: !this.state.xIsNext,
+    });
   }
 
   renderSquare(i) {
