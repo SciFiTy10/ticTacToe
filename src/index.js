@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-
+{/* Square function receives props as parameter, and shows value */}
 function Square(props) {
+    {/* This returns the result of handleClick which is in the parent component (Board) */}
     return (
       <button className="square" onClick={props.onClick}>
         {props.value}
@@ -11,6 +12,7 @@ function Square(props) {
     );
   }
 
+{/* Board begins with 9 null squares, and holds state management variable for player piece */}
 class Board extends React.Component {
   constructor(props){
     super(props);
@@ -19,24 +21,25 @@ class Board extends React.Component {
       xIsNext: true,
     };
   }
-
+{/* handleClick responds to onClick prop from Square function */}
   handleClick(i){
     {/* We use slice() to create an array that's a copy of the first */}
     const squares = this.state.squares.slice();
-
+    {/* call calculateWinner to determine if game is over, if so we escape the rest of function */}
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    
-    {/* Then we set the value to X for that position in the copy */}
+    {/* Otherwise: */}
+    {/* Then we set the value to X or O for that position in the copy */}
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     {/* Finally we take the copy and overwrite the original squares array */}
+    {/* We also change the xIsNext variable within the state */}
     this.setState({
       squares: squares,
       xIsNext: !this.state.xIsNext,
     });
   }
-
+  {/* renderSquare for initializing square component (now a function) and establishes handleClick as the handler */}
   renderSquare(i) {
     return (
       <Square
